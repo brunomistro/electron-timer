@@ -8,5 +8,7 @@ app.on('ready', () => {
 		height: 400
 	})
 
-	mainWindow.loadURL('https://www.github.com/brunomistro')
+	mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
+
+app.on('window-all-closed', () => { app.quit(); });
