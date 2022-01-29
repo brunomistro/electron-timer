@@ -5,10 +5,7 @@ app.on('ready', () => {
 
 	let mainWindow = new BrowserWindow({
 		width: 600,
-		height: 400,
-		webPreferences: {
-      nodeIntegration: true,
-    },
+		height: 400
 	})
 
 	mainWindow.loadURL(`file://${__dirname}/app/index.html`);
@@ -16,13 +13,21 @@ app.on('ready', () => {
 
 app.on('window-all-closed', () => { app.quit(); });
 
+let aboutWindow = null
+
 ipcMain.on('open-about-window', () => {
-	let aboutWindow = new BrowserWindow({
-		width: 300,
-		height: 200,
-		
-	});
+	if(aboutWindow == null){
+		aboutWindow = new BrowserWindow({
+			width: 300,
+			height: 200,
+			alwaysOnTop: true,
+			frame: false
+		});
 
-
+		aboutWindow.on('closed', () => { aboutWindow = null; })
+	}
+	
 	aboutWindow.loadURL(`file://${__dirname}/app/about.html`);
-})
+});
+
+ipcMain.on('close-about-window', () => { aboutWindow.close(); })

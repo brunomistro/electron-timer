@@ -1,7 +1,7 @@
 const { ipcRenderer } = require('electron');
 
-let linkAbout = document.querySelector('link-about');
+let linkAbout = document.querySelector('#link-about');
 
-linkAbout.addEventListener('click', function() {
+linkAbout.addEventListener('click', () => {
 	ipcRenderer.send('open-about-window')
 })
