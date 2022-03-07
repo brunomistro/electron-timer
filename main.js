@@ -10,19 +10,11 @@ app.on('ready', () => {
 		width: 600,
 		height: 400
 	})
+
 	tray = new Tray(__dirname + '\\app\\img\\icon-tray.png');
-
-	let template = templateGenerator.geraTrayTemplate()
+	let template = templateGenerator.geraTrayTemplate(mainWindow)
 	let trayMenu = Menu.buildFromTemplate(template)
-
 	tray.setContextMenu(trayMenu);
-	// let trayMenu = Menu.buildFromTemplate([
-	// 	{label: 'Cursos'},
-	// 	{label: '', type: 'separator'},
-	// 	{label: 'Electron', type: 'radio'},
-	// 	{label: 'React JS', type: 'radio'},
-	// 	{label: 'Java', type: 'radio'},
-	// ]);
 
 	mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
