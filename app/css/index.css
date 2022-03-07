@@ -8,20 +8,28 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* 
+#170C51
+#DCBCC9
+#FFFFFF 
+*/
+
 html, body {
    height: 100%;
    width: 100%;
    font-family: 'Roboto', sans-serif;
-   background: url(../img/texture.png) top left repeat;
+   background: #170C51
 }
+
 .titulo{
-    color: #5271FF;
+    color: #FFF;
     text-transform: capitalize;
     text-align: center;
     font-size: 4em;
     position: relative;
     top: 20px;
 }
+
 .timer{
     width: 530px;
     margin: 0 auto;
@@ -35,15 +43,14 @@ html, body {
     text-align: center;
     height: 75%;
     vertical-align: top;
-    background-color: #879CFF;
+    background-color: #DCBCC9;
 }
 
 .controles{
     width: 25%;
     height: 75%;
-    /*margin-bottom: 5px;*/
     display: inline-block;
-    background-color: #7D94FF;
+    background-color: #DCBCC9;
 
 }
 
@@ -65,7 +72,7 @@ html, body {
     width: 100%;
     text-align: center;
     margin-top: 2px;
-    background-color: #97A7F2;
+    background-color: #DCBCC9;
 }
 
 .curso{
