@@ -1,7 +1,17 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer } = require("electron");
+const timer = require("./timer");
 
-let linkAbout = document.querySelector('#link-about');
+let linkSobre = document.querySelector("#link-sobre");
+let botaoPlay = document.querySelector(".botao-play");
+let tempo = document.querySelector('.tempo')
 
-linkAbout.addEventListener('click', () => {
-	ipcRenderer.send('open-about-window')
-})
+linkSobre.addEventListener("click", function () {
+  ipcRenderer.send("abrir-janela-sobre");
+});
+
+let imgs = ['img/play-button.svg', 'img/stop-button.svg']
+botaoPlay.addEventListener("click", () => {
+	imgs = imgs.reverse();
+	timer.inciar(tempo)
+	botaoPlay.src = imgs[0];
+});

@@ -15,7 +15,7 @@ app.on('window-all-closed', () => { app.quit(); });
 
 let aboutWindow = null
 
-ipcMain.on('open-about-window', () => {
+ipcMain.on('abrir-janela-sobre', () => {
 	if(aboutWindow == null){
 		aboutWindow = new BrowserWindow({
 			width: 300,
