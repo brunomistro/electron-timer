@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const data = require('./data')
 
 app.on('ready', () => {
 	console.log("Open App");
@@ -29,5 +30,10 @@ ipcMain.on('abrir-janela-sobre', () => {
 	
 	aboutWindow.loadURL(`file://${__dirname}/app/about.html`);
 });
+
+ipcMain.on('curso-parado', (event, curso, tempoEstudado) => {
+	console.log(`nome: ${curso}, tempo: ${tempoEstudado}`);
+	data.salvaDados(curso, tempoEstudado)
+})
 
 ipcMain.on('close-about-window', () => { aboutWindow.close(); })
