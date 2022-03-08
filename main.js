@@ -3,10 +3,11 @@ const data = require('./data')
 const templateGenerator = require('./template')
 
 let tray = null
+let mainWindow = null;
 app.on('ready', () => {
 	console.log("Open App");
 
-	let mainWindow = new BrowserWindow({
+	mainWindow = new BrowserWindow({
 		width: 600,
 		height: 400
 	})
@@ -16,10 +17,17 @@ app.on('ready', () => {
 	let trayMenu = Menu.buildFromTemplate(template)
 	tray.setContextMenu(trayMenu);
 
+	
+	let templateMenu = templateGenerator.geraMenuPrincipalTemplate()
+	let menuPrincipal = Menu.buildFromTemplate(templateMenu)
+	Menu.setApplicationMenu(menuPrincipal)
+	
 	mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
 
 app.on('window-all-closed', () => { app.quit(); });
+
+ipcMain.on('close-about-window', () => { aboutWindow.close(); })
 
 let aboutWindow = null
 
@@ -43,4 +51,8 @@ ipcMain.on('curso-parado', (event, curso, tempoEstudado) => {
 	data.salvaDados(curso, tempoEstudado)
 })
 
-ipcMain.on('close-about-window', () => { aboutWindow.close(); })
+ipcMain.on('curso-adicionado', (event, novoCurso) => {
+	let novoTemplate = templateGenerator.adicionaCursoNoTray(novoCurso, mainWindow);
+	let novoTrayMenu = Menu.buildFromTemplate(novoTemplate)
+	tray.setContextMenu(novoTrayMenu)
+})
