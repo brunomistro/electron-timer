@@ -47,12 +47,15 @@ const notifica = (curso, state) => {
 }
 
 ipcRenderer.on('curso-trocado', (event, nomeCurso) => {
+	timer.parar(curso.textContent)
 	data.pegaDados(nomeCurso)
-	.then(dados => {tempo.textContent = dados.tempo})
+	.then(dados => tempo.textContent = dados.tempo)
+	.catch(() => tempo.textContent = "00:00:00")
 	curso.textContent = nomeCurso;
 })
 
 botaoAdicionar.addEventListener('click', () => {
+	if(campoAdicionar.value == '') return
 	let novoCurso = campoAdicionar.value
 	curso.textContent = novoCurso;
 	tempo.textContent = "00:00:00"
