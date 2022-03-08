@@ -60,7 +60,8 @@ module.exports = {
 			submenu: [
 				{
 					label: 'About the timer',
-					click: () => ipcMain.emit('abrir-janela-sobre')
+					click: () => { ipcMain.emit('abrir-janela-sobre')},
+					accelerator: 'CmdOrCtrl+A'
 				}
 			]
 			}
