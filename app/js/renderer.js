@@ -27,15 +27,24 @@ botaoPlay.addEventListener("click", () => {
 		console.log(curso.textContent);
 		timer.parar(curso.textContent)
 		play = false
+		notifica(curso.textContent, 'parado')
 	}
 	else {
 		timer.inciar(tempo)
 		play = true
+		notifica(curso.textContent, 'iniciado')
 	}
 
 	imgs = imgs.reverse();
 	botaoPlay.src = imgs[0];
 });
+
+const notifica = (curso, state) => {
+	new Notification('Timer', {
+		body: `O curso ${curso} foi ${state}`,
+		icon: state === 'iniciado' ? 'img/play-button.png' : 'img/stop-button.png'
+	})
+}
 
 ipcRenderer.on('curso-trocado', (event, nomeCurso) => {
 	data.pegaDados(nomeCurso)
